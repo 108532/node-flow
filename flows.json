@@ -1,0 +1,487 @@
+[
+    {
+        "id": "e6f6bea3f6399567",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "467bc82ffa85186b",
+        "type": "modbus-read",
+        "z": "e6f6bea3f6399567",
+        "name": "voltage A-N",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "001",
+        "dataType": "HoldingRegister",
+        "adr": "3027",
+        "quantity": "2",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "2c8c84de14d68697",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "202dc4c6b9f73bf8"
+            ],
+            [
+                "f050eb5aedc1c71f"
+            ]
+        ]
+    },
+    {
+        "id": "f050eb5aedc1c71f",
+        "type": "modbus-response",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 270,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5ce0e95c21343e02",
+        "type": "debug",
+        "z": "e6f6bea3f6399567",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "202dc4c6b9f73bf8",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 1",
+        "func": "var msg1={payload:(msg.payload[0]<<16)+msg.payload[1]}\nreturn msg1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 40,
+        "wires": [
+            [
+                "1c1169756c9a3511"
+            ]
+        ]
+    },
+    {
+        "id": "3469cdaa6108e7f5",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 2",
+        "func": "msg.payload=parseFloat(msg.payload.toFixed(2));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 40,
+        "wires": [
+            [
+                "5ce0e95c21343e02",
+                "873f9bc3ad9894c4"
+            ]
+        ]
+    },
+    {
+        "id": "1c1169756c9a3511",
+        "type": "toFloat",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "toFixed": "",
+        "x": 430,
+        "y": 40,
+        "wires": [
+            [
+                "3469cdaa6108e7f5"
+            ]
+        ]
+    },
+    {
+        "id": "873f9bc3ad9894c4",
+        "type": "ui_gauge",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "group": "7cb4e5b5958df951",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "voltage R phase",
+        "label": "volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "250",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "diff": false,
+        "className": "",
+        "x": 720,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bfed8c9bf77053b0",
+        "type": "modbus-read",
+        "z": "e6f6bea3f6399567",
+        "name": "voltage B-N",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "001",
+        "dataType": "HoldingRegister",
+        "adr": "3029",
+        "quantity": "2",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "2c8c84de14d68697",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "df35bc07db9d432c"
+            ],
+            [
+                "41f9a3f3c1e54521"
+            ]
+        ]
+    },
+    {
+        "id": "df35bc07db9d432c",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 3",
+        "func": "var msg1={payload:(msg.payload[0]<<16)+msg.payload[1]}\nreturn msg1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 200,
+        "wires": [
+            [
+                "1ab5ed6784ce7a57"
+            ]
+        ]
+    },
+    {
+        "id": "41f9a3f3c1e54521",
+        "type": "modbus-response",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 270,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1ab5ed6784ce7a57",
+        "type": "toFloat",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "toFixed": "",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "6038cf40d9281a5d"
+            ]
+        ]
+    },
+    {
+        "id": "6038cf40d9281a5d",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 4",
+        "func": "msg.payload=parseFloat(msg.payload.toFixed(2));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "c21b2bdec8114a9f",
+                "fd6ea1ad50b94b6c"
+            ]
+        ]
+    },
+    {
+        "id": "c21b2bdec8114a9f",
+        "type": "debug",
+        "z": "e6f6bea3f6399567",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fd6ea1ad50b94b6c",
+        "type": "ui_gauge",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "group": "7cb4e5b5958df951",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "voltage Y phase",
+        "label": "volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "250",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "diff": false,
+        "className": "",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f0a09632918f736b",
+        "type": "modbus-read",
+        "z": "e6f6bea3f6399567",
+        "name": "voltage C-N",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "001",
+        "dataType": "HoldingRegister",
+        "adr": "3059",
+        "quantity": "2",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "2c8c84de14d68697",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "67e4fd4f91326e2c"
+            ],
+            [
+                "6406162a9386875e"
+            ]
+        ]
+    },
+    {
+        "id": "6406162a9386875e",
+        "type": "modbus-response",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 270,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "dade67d635b66550",
+        "type": "debug",
+        "z": "e6f6bea3f6399567",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "18f6d9bd0a66be34",
+        "type": "ui_gauge",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "group": "7cb4e5b5958df951",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "voltage B phase",
+        "label": "volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "250",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "100",
+        "seg2": "150",
+        "diff": false,
+        "className": "",
+        "x": 740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "67e4fd4f91326e2c",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 5",
+        "func": "var msg1={payload:(msg.payload[0]<<16)+msg.payload[1]}\nreturn msg1;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "e6cccbf6157909be"
+            ]
+        ]
+    },
+    {
+        "id": "e6cccbf6157909be",
+        "type": "toFloat",
+        "z": "e6f6bea3f6399567",
+        "name": "",
+        "toFixed": "",
+        "x": 450,
+        "y": 380,
+        "wires": [
+            [
+                "ed94fe97f32b3f40"
+            ]
+        ]
+    },
+    {
+        "id": "ed94fe97f32b3f40",
+        "type": "function",
+        "z": "e6f6bea3f6399567",
+        "name": "function 6",
+        "func": "msg.payload=parseFloat(msg.payload.toFixed(2));\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 380,
+        "wires": [
+            [
+                "dade67d635b66550",
+                "18f6d9bd0a66be34"
+            ]
+        ]
+    },
+    {
+        "id": "2c8c84de14d68697",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "COM3",
+        "serialType": "RTU",
+        "serialBaudrate": "19200",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "even",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 20,
+        "parallelUnitIdsAllowed": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "7cb4e5b5958df951",
+        "type": "ui_group",
+        "name": "voltage ",
+        "tab": "e26e852239e81330",
+        "order": 1,
+        "disp": true,
+        "width": 5,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e26e852239e81330",
+        "type": "ui_tab",
+        "name": "voltage",
+        "icon": "voltage",
+        "disabled": false,
+        "hidden": false
+    }
+]
